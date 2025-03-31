@@ -1,0 +1,33 @@
+@import "./global.scss";
+
+.layout {
+ display: flex;
+ height: 100vh;
+ width: 100vw;
+}
+.layout {
+ navbar {
+  display: flex;
+  flex-direction: flex-column;
+  width: 20%;
+  height: 100%;
+  border-right: 0.2rem solid $text-color;
+
+  ul {
+   list-style: square;
+
+   li {
+    color: hsl(217, 100%, 79%);
+    margin-bottom: 1rem;
+   }
+  }
+ }
+}
+
+.layout > main {
+ display: flex;
+ flex-direction: column;
+ width: 80%;
+ height: 100%;
+ overflow-y: auto;
+}

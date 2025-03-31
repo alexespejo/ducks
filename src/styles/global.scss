@@ -1,0 +1,33 @@
+$background-color: #282c34;
+$text-color: #abb2bf;
+
+body {
+ border-radius: 0;
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+ background: $background-color;
+ color: $text-color;
+
+ /* Make the scrollbar thinner */
+ scrollbar-width: thin; /* For Firefox */
+
+ &::-webkit-scrollbar {
+  width: 8px; /* For WebKit browsers */
+ }
+
+ &::-webkit-scrollbar-thumb {
+  background-color: $text-color;
+  border-radius: 4px;
+ }
+}
+
+pre {
+ padding: 10px;
+}
+
+p {
+ background: red;
+}

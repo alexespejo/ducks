@@ -1,0 +1,182 @@
+/* Styling for blockquotes */
+blockquote {
+ border-left: 4px solid #56b6c2; /* Cyan for blockquote border */
+ padding: 0.5em 1em;
+ color: #98c379; /* Green for blockquote text */
+ background: #21252b; /* Darker background for blockquotes */
+ border-radius: 4px;
+ font-style: italic; /* Italicize blockquote text */
+ margin: 1em 0;
+}
+
+/* Styling for code blocks */
+pre,
+code {
+ font-family: "Fira Code", monospace; /* Monospace font for code */
+ //  background: #31363f; /* Darker background for code blocks */
+ color: #60a6e2; /* Red for code text */
+ padding: 0.4em 0.6em;
+ border-radius: 4px;
+ overflow-x: auto; /* Horizontal scrolling for long code */
+ line-height: 1.5;
+}
+
+pre {
+ margin: 1em 0;
+ border: 1px solid #3e4451; /* Border for code blocks */
+}
+
+code {
+ display: inline-block;
+}
+
+span.lx-center {
+ pre,
+ code {
+  text-align: center;
+ }
+}
+
+/* Styling for tables */
+table {
+ width: 100%;
+ border-collapse: collapse;
+ background: #21252b; /* Darker background for tables */
+ color: #abb2bf; /* Main text color */
+ margin: 1em 0;
+}
+
+th,
+td {
+ border: 1px solid #3e4451; /* Border color for table cells */
+ padding: 0.6em;
+}
+
+th {
+ background: #3e4451; /* Slightly darker background for table headers */
+ color: #dcdfe4; /* Light text for headers */
+ text-align: left;
+}
+
+/* Styling for horizontal rules */
+hr {
+ border: 0;
+ height: 1px;
+ background: #3e4451; /* Divider color */
+ margin: 2rem 0;
+}
+
+/* Styling for links */
+a {
+ color: #61afef; /* Blue for links */
+ text-decoration: none;
+}
+
+a:hover {
+ text-decoration: underline; /* Underline on hover */
+}
+
+/* Styling for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ color: #dcdfe4; /* Light text for headings */
+ margin: 1.5em 0 0.5em;
+ font-weight: bold;
+ display: flex;
+ align-items: center;
+ &:hover::after {
+  content: "🔗";
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-top: 0.15em;
+  margin-left: 0.5rem;
+  margin-right: auto;
+  display: inline-block;
+  text-align: center;
+ }
+}
+
+h1 {
+ font-size: 2em;
+ border-bottom: 2px solid #3e4451; /* Underline for H1 */
+ padding-bottom: 0.3em;
+}
+
+h2 {
+ font-size: 1.75em;
+ border-bottom: 1px solid #3e4451; /* Underline for H2 */
+ padding-bottom: 0.2em;
+}
+
+h3 {
+ font-size: 1.5em;
+}
+
+h4 {
+ font-size: 1.25em;
+}
+
+h5 {
+ font-size: 1em;
+}
+
+h6 {
+ font-size: 0.875em;
+}
+
+/* Styling for lists */
+ul,
+ol {
+ margin: 1em 0;
+ padding-left: 1.5em;
+}
+
+li {
+ margin: 0.5em 0;
+ color: #abb2bf; /* Main text color */
+}
+blockquote {
+ border-left: 4px solid #56b6c2; /* Cyan for blockquote border */
+ padding: 0.5em 1em;
+ color: #98c379; /* Green for blockquote text */
+ background: #21252b; /* Darker background for blockquotes */
+ border-radius: 4px;
+}
+
+table {
+ width: 100%;
+ border-collapse: collapse;
+ background: #21252b; /* Darker background for tables */
+ color: #abb2bf; /* Main text color */
+}
+
+th,
+td {
+ border: 1px solid #3e4451; /* Border color for table cells */
+ padding: 0.6em;
+}
+
+th {
+ background: #3e4451; /* Slightly darker background for table headers */
+ color: #dcdfe4; /* Light text for headers */
+}
+
+hr {
+ border: 0;
+ height: 1px;
+ background: #3e4451; /* Divider color */
+ margin: 2rem 0;
+}
+
+a {
+ color: #61afef; /* Blue for links */
+ text-decoration: none;
+}
+
+a:hover {
+ text-decoration: underline; /* Underline on hover */
+}
