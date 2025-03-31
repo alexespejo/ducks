@@ -22,6 +22,8 @@
 - Render Lists and sublists
 - Navigate up and down the right panel
 - Collapsable?
+- List item rendering
+- Dynamcially change navbar ordering based on page ordering
 
 ### Layout
 
@@ -38,4 +40,5 @@
   - Require to dynamically create the navbar based off any particular ordering of pages
 - (MVP-M) Image parsing to centralize where images go
   - Image clean up, clear images from directory that are not in a document
+
 # abd

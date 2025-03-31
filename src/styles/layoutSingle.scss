@@ -26,11 +26,6 @@ body {
 
   &:hover {
    text-decoration: underline;
-   color: lighten($base-2, 10%);
-  }
-
-  &:active {
-   color: darken($base-2, 10%);
   }
  }
  .nav {
