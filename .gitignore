@@ -23,4 +23,3 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 # hide CLI folder
-cli/

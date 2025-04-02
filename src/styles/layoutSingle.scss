@@ -44,53 +44,6 @@ body {
  .container {
   width: 60%;
  }
- //  button {
- //   all: unset;
- //   color: #60a6e2; /* Red for code text */
- //   text-decoration: none;
- //   cursor: pointer;
- //
- //   &:hover {
- //    text-decoration: underline;
- //   }
- //  }
- //  .nav {
- //   position: fixed;
- //   top: 0;
- //   right: 0;
- //   width: 23%;
- //   height: 100vh;
- //   overflow: auto;
- //   -ms-overflow-style: none; /* IE and Edge */
- //   scrollbar-width: none; /* Firefox */
- //   &::-webkit-scrollbar {
- //    display: none; /* Chrome, Safari and Opera */
- //   }
- //   ul {
- //    li {
- //    }
- //   }
- //  }
- //  .container {
- //   height: 100%;
- //   width: 100%;
- //   overflow-y: auto;
- //   word-wrap: break-word;
- //   overflow-wrap: break-word;
- //   padding: 0.5rem 1rem;
- //
- //   // Custom scrollbar styles
- //   &::-webkit-scrollbar {
- //    width: 8px; // Adjust the width of the scrollbar
- //   }
- //   &::-webkit-scrollbar-thumb {
- //    background-color: $base-2; // Match the scrollbar thumb to the website's color
- //    border-radius: 4px; // Rounded corners
- //   }
- //   &::-webkit-scrollbar-track {
- //    background-color: $base-1; // Match the scrollbar track to the website's background
- //   }
- //  }
 }
 
 // For Firefox
