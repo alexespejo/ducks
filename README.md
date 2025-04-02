@@ -24,6 +24,8 @@
 - Collapsable?
 - List item rendering
 - Dynamcially change navbar ordering based on page ordering
+- Alt. Homepage navigation and navbar
+  - Homepage options auto generate based on existing pages
 
 ### Layout
 
@@ -41,4 +43,19 @@
 - (MVP-M) Image parsing to centralize where images go
   - Image clean up, clear images from directory that are not in a document
 
-# abd
+# Post Trial 1
+
+## Frontend
+
+- Notion style multipage
+  - Eventual side navbar, track page you're viewing
+  - Centerd text
+- Homepage navigation
+
+## Cli
+
+- Auto gen pages and nav config
+- Image clean up
+- Delete pages
+- Track for updates
+- Be able to add files to a folder and auto generate the routes based on those pages

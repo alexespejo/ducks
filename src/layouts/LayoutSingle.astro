@@ -1,7 +1,6 @@
 ---
 import "../styles/layoutSingle.scss"
-import LinkItem from "@/components/Navbar/LinkItem.svelte"
-import List from "@/components/Navbar/List.svelte"
+import Icon from "../components/Icons/Icon.svelte"
 ---
 <!doctype html>
 <html lang="en">
@@ -15,24 +14,15 @@ import List from "@/components/Navbar/List.svelte"
   </head>
   <body>
     <main>
-    <div class="current-heading" id="current-heading"></div>
+    <navbar>
+    <a href="/">
+      <Icon name="home" size={30}/>
+    </a>
+    </navbar>
     <div class="container">
       <slot />
     </div>
-    <div class="nav">
-      <List client:load>
-        <LinkItem label="Doc 1" client:load />	
-        <LinkItem label="CS161 - Notes 2 Review Sheet" client:load />	
-        <List client:load>
-          <LinkItem label="Basic Data Structures" client:load />	
-          <LinkItem label="Arrays" client:load />	
-          <LinkItem label="Dynamic Arrays" client:load />	
-          <LinkItem label="Linked List" client:load />	
-          <LinkItem label="Searching in a Sorted Array (Binary Search)" client:load />	
-        </List>	
-        <LinkItem label="CS161 - Notes 2 Review Sheet" client:load />	
-      </List>
-    </div>
+
     </main>
   </body>
 </html>
