@@ -45,26 +45,31 @@ type Header struct {
 
 func parseHeaders(headers []string) []Header {
 	var result []Header
-	var currentH1 *Header
-	var currentH2 *SubHeader
+	// var currentH1 *Header
+	// var currentH2 *SubHeader
 
+	// for _, header := range headers {
+	// 	switch {
+	// 	case len(header) > 3 && header[:3] == "###":
+	// 		if currentH2 != nil {
+	// 			currentH2.Children = append(currentH2.Children, SubSubHeader{H3: header[4:]})
+	// 		}
+	// 	case len(header) > 2 && header[:2] == "##":
+	// 		newH2 := SubHeader{H2: header[3:], Children: []SubSubHeader{}}
+	// 		if currentH1 != nil {
+	// 			currentH1.Children = append(currentH1.Children, newH2)
+	// 		}
+	// 		currentH2 = &currentH1.Children[len(currentH1.Children)-1]
+	// 	case len(header) > 1 && header[:1] == "#":
+	// 		newH1 := Header{H1: header[2:], Children: []SubHeader{}}
+	// 		result = append(result, newH1)
+	// 		currentH1 = &result[len(result)-1]
+	// 		currentH2 = nil
+	// 	}
+	// }
 	for _, header := range headers {
-		switch {
-		case len(header) > 3 && header[:3] == "###":
-			if currentH2 != nil {
-				currentH2.Children = append(currentH2.Children, SubSubHeader{H3: header[4:]})
-			}
-		case len(header) > 2 && header[:2] == "##":
-			newH2 := SubHeader{H2: header[3:], Children: []SubSubHeader{}}
-			if currentH1 != nil {
-				currentH1.Children = append(currentH1.Children, newH2)
-			}
-			currentH2 = &currentH1.Children[len(currentH1.Children)-1]
-		case len(header) > 1 && header[:1] == "#":
-			newH1 := Header{H1: header[2:], Children: []SubHeader{}}
-			result = append(result, newH1)
-			currentH1 = &result[len(result)-1]
-			currentH2 = nil
+		if strings.Split(header, " ")[0] == "#" {
+			result = append(result, Header{H1: header[1:], Children: []SubHeader{}})
 		}
 	}
 	return result

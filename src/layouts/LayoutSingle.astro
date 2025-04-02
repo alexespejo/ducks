@@ -1,5 +1,6 @@
 ---
 import "../styles/layoutSingle.scss"
+import "../styles/tailwind.css"
 import Icon from "../components/Icons/Icon.svelte"
 ---
 <!doctype html>
@@ -13,16 +14,15 @@ import Icon from "../components/Icons/Icon.svelte"
     <title>ABD</title>
   </head>
   <body>
-    <main>
-    <navbar>
-    <a href="/">
-      <Icon name="home" size={30}/>
-    </a>
-    </navbar>
-    <div class="container">
-      <slot />
-    </div>
-
+    <main class="flex flex-col items-center relative">
+      <navbar class="sticky top-0 flex w-full px-4 py-2">
+        <a href="/">
+          <Icon name="home" size={30}/>
+        </a>
+      </navbar>
+      <div class="w-[60%]">
+        <slot />
+      </div>
     </main>
   </body>
 </html>
