@@ -1,3 +1,8 @@
+---
+layout: "../../layouts/LayoutSingle.astro"
+title: "Doc2"
+---
+
 Here's the content from the slides transposed into markdown format with LaTeX for mathematical symbols and code snippets:
 
 # Heap Operations

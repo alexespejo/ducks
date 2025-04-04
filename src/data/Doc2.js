@@ -1,0 +1,16 @@
+export const Doc2 = [
+  "Heap Operations",
+  " SiftUp",
+  " SiftDown",
+  " Insert",
+  " Delete",
+  " ExtractMax",
+  "Heap Construction",
+  " Heapify",
+  "Heapsort",
+  "Radix Sort",
+  "Bucket Sort",
+  "Replacement Selection",
+  " Example",
+  " Benefits",
+];

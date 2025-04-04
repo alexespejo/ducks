@@ -1,3 +1,9 @@
+---
+# dont modif
+layout: "../../layouts/LayoutSingle.astro"
+title: "Doc1"
+---
+
 # Doc 1
 
 Based on the information provided, I have access to several parts of two PDF files:

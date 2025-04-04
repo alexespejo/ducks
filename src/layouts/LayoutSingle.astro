@@ -1,8 +1,15 @@
 ---
 import "../styles/layoutSingle.scss"
 import "../styles/tailwind.css"
+import Navlist from "../components/Navbar/Navlist.svelte"
 import Icon from "../components/Icons/Icon.svelte"
+const { frontmatter } = Astro.props;
 ---
+<script>
+  window.addEventListener('hashchange', () => {
+    alert('URL hash changed to: ' + window.location.hash);
+  });
+</script>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,10 +18,11 @@ import Icon from "../components/Icons/Icon.svelte"
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" />
     <meta name="generator" content={Astro.generator} />
-    <title>ABD</title>
+    <title>{frontmatter?.title ? frontmatter.title : "ABD"}</title>
   </head>
   <body>
     <main class="flex flex-col items-center relative">
+      <Navlist client:load page={frontmatter.title}/>
       <navbar class="sticky top-0 flex w-full px-4 py-2">
         <a href="/">
           <Icon name="home" size={30}/>

@@ -59,3 +59,14 @@
 - Delete pages
 - Track for updates
 - Be able to add files to a folder and auto generate the routes based on those pages
+
+## Todo
+
+- Parse h1's into a navbar
+
+  - Separe layout and navbars?
+  - X Separate files for schema?
+
+    - Dedicated javascript arrays associated to each file
+
+  - Build layout pagess

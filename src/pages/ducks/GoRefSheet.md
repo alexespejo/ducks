@@ -1,3 +1,9 @@
+---
+# don't modify
+layout: "../../layouts/LayoutSingle.astro"
+title: "GoRefSheet"
+---
+
 Certainly! Here's a comprehensive syntax guide for the Go programming language in markdown format. This guide covers many common operations and data structures that are shared among other programming languages:
 
 # Go Programming Language Syntax Guide

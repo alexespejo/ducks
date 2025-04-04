@@ -1,3 +1,8 @@
+---
+layout: "../../layouts/LayoutSingle.astro"
+title: "Doc3"
+---
+
 # Doc 3
 
 ```python
