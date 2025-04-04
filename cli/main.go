@@ -191,7 +191,8 @@ func main() {
 		coreFileCleanup()
 
 	case "publish":
-		exec.Command("bash", "git-publish.sh").Run()
+		exec.Command("git", "add", "--all").Run()
+		exec.Command("git", "qush", "update").Run()
 
 	default:
 		fmt.Println("Error: Invalid argument. Use 'build' or 'add'.")
