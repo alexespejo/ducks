@@ -18,7 +18,7 @@ const { frontmatter } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" />
     <meta name="generator" content={Astro.generator} />
-    <title>{frontmatter?.title ? frontmatter.title : "ABD"}</title>
+    <title>{frontmatter?.title !== null ? frontmatter.title : "ABD"}</title>
   </head>
   <body>
     <main class="flex flex-col items-center relative">
