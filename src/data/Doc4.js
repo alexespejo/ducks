@@ -1,1 +1,2 @@
-export const Doc4 = [];
+export const Doc4 = [
+];

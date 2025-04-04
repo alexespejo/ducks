@@ -142,11 +142,7 @@ func coreBuildNavigation() {
 	}
 }
 
-func coreBuildDocument() {
-	fmt.Println("Document Name: ")
-	var docName string
-	fmt.Scanln(&docName)
-
+func coreBuildDocument(docName string) {
 	filePath := "../src/pages/ducks/" + docName + ".md"
 	err := ioFile.CreateFile(filePath)
 	if err != nil {
@@ -170,11 +166,6 @@ title: %s
 func main() {
 	args := os.Args[1:]
 
-	if len(args) > 1 {
-		fmt.Println("Error: Too many arguments. Only one argument is allowed.")
-		os.Exit(1)
-	}
-
 	if len(args) == 0 {
 		fmt.Println("Error: No arguments provided. One argument is required.")
 		os.Exit(1)
@@ -186,12 +177,20 @@ func main() {
 		coreBuildNavigation()
 
 	case "add":
-
-		coreBuildDocument()
+		if len(args) < 2 {
+			fmt.Println("Error: No document name provided. One argument is required.")
+			os.Exit(1)
+		} else if strings.Contains(args[1], ".") {
+			fmt.Println("Error: Invalid document name. No '.' allowed.")
+			os.Exit(1)
+		}
+		coreBuildDocument(args[1])
 		coreBuildNavigation()
 
-	default:
+	case "clean":
+		coreFileCleanup()
 
+	default:
 		fmt.Println("Error: Invalid argument. Use 'build' or 'add'.")
 		os.Exit(1)
 	}
