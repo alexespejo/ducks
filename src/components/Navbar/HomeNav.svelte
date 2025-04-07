@@ -1,7 +1,7 @@
 
 	<script>
 	import List from "./List.svelte";
-	const routes = [];
+	const routes = ["CS165_prjct1", "cs179_notes"];
 	</script>
 	<List lists={routes} />
 	

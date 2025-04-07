@@ -142,14 +142,15 @@ func coreBuildNavigation() {
 			}
 
 			filExt := len(file) - 3
-			newFile := extData + file[:filExt] + ".js"
+			fileName := strings.ToUpper(file[:1]) + file[1:filExt]
+			newFile := extData + fileName + ".js"
 			ioFile.CreateFile(newFile)
 
-			cases += buildSwitchCase(file[:filExt])
-			imports += buildImports(file[:filExt])
+			cases += buildSwitchCase(fileName)
+			imports += buildImports(fileName)
 
 			// Create JavaScript array content
-			jsContent := fmt.Sprintf("export const %s = [\n", file[:filExt])
+			jsContent := fmt.Sprintf("export const %s = [\n", fileName)
 			for _, header := range headers {
 				jsContent += fmt.Sprintf("  \"%s\",\n", header)
 			}
@@ -195,15 +196,27 @@ title: %s
 	fmt.Printf("Document %s.md created successfully ✅\n", docName)
 }
 
+func printError(message string) {
+	fmt.Printf("\033[1;31mError: %s\033[0m\n", message)
+}
 func main() {
+
 	if len(os.Args) > 2 {
-		fmt.Println("Error: Too many arguments provided")
+		printError("Error: Too many arguments provided")
 		os.Exit(1)
 	}
 
 	args := os.Args[1:]
 	if args[0] != "start" {
-		fmt.Printf("Error: Invalid argument %s. Use 'start'", string(args[0]))
+		printError(fmt.Sprintf("Error: Invalid argument %s. Use 'start'", string(args[0])))
+		os.Exit(1)
+	}
+
+	dir, _ := os.Getwd()
+	directories := strings.Split(dir, "/")
+	lastDir := directories[len(directories)-1]
+	if lastDir != "cli" {
+		printError("Error: Please run this command from the 'cli' directory")
 		os.Exit(1)
 	}
 
@@ -255,7 +268,7 @@ func main() {
 			fmt.Println("Exiting...")
 			os.Exit(0)
 		default:
-			fmt.Println("Error: Invalid argument. Use 'build' or 'add'.")
+			printError("Error: Invalid argument. Use 'build' or 'add'.")
 			os.Exit(1)
 		}
 	}
