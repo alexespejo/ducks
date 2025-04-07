@@ -6,8 +6,22 @@ import Icon from "../components/Icons/Icon.svelte"
 const { frontmatter } = Astro.props;
 ---
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const allElements = document.querySelectorAll("html *");
+    allElements.forEach((element) => {
+      if (["H1", "H2", "H3"].includes(element.tagName) && element.id) {
+        element.innerHTML = `<a href="#${element.id}" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center;">${element.innerHTML}</a>`;
+        const style = document.createElement("style");
+     
+        document.head.appendChild(style);
+        element.addEventListener("click", () => {
+          window.location.hash = element.id;
+        });
+      }
+    });
+  });
   window.addEventListener('hashchange', () => {
-    alert('URL hash changed to: ' + window.location.hash);
+    console.log('URL hash changed to: ' + window.location.hash);
   });
 </script>
 <!doctype html>

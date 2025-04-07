@@ -11,7 +11,9 @@
 <ul>
  {#if !$$slots.default}
   {#each lists as list}
-   <LinkItem label={list} />
+   <li>
+    <a href={`/ducks/${list}`}>{list}</a>
+   </li>
   {/each}
  {:else}
   <slot />

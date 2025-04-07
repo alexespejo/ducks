@@ -51,9 +51,9 @@ func extractHeadings(mdContent string) []string {
 
 	var headings []string
 	for _, match := range matches {
-		headings = append(headings, match[0]) // Entire matched heading
+		heading := strings.TrimSpace(match[0])
+		headings = append(headings, heading)
 	}
-
 	return headings
 }
 
@@ -65,29 +65,59 @@ func buildImports(header string) string {
 }
 func buildNavbar(pImports string, pCases string) string {
 	return fmt.Sprintf(`
-		<script lang="ts">
-		 import { onMount } from "svelte";
-			%s	
+<script lang="ts">
+	import { onMount } from "svelte";
+	%s	
 
-			export let page = "";
+	export let page = "";
 
-			let headers: string[] = [];
-			onMount(() => {
-				switch (page.toLowerCase()) {
-					%s
-					default:
-						headers = [];
-						break;
-				}	
-			});
-		</script>	
+	let headers: string[] = [];
+	onMount(() => {
+		switch (page.toLowerCase()) {
+			%s
+			default:
+				headers = [];
+				break;
+		}	
+	});
+</script>	
 
-		<div>
-			{#each headers as header}
-				{header}
-			{/each}
-		</div>
+<ul class="fixed top-0 right-0 w-48">
+ {#each headers as header}
+  <li class="text-xs truncate">
+   <a href={'#'+header.split(" ").join("-").toLowerCase()}>
+    {header}
+   </a>
+  </li>
+ {/each}
+</ul>
 	`, pImports, pCases)
+}
+func coreBuildHome() {
+	filePath := "../src/components/Navbar/HomeNav.svelte"
+	duckExt := "../src/pages/ducks/"
+	cmd := exec.Command("ls", duckExt)
+	out, _ := cmd.Output()
+	duckData := strings.Split(string(out), "\n")
+
+	routes := []string{}
+	for _, header := range duckData {
+		if strings.Contains(header, ".md") {
+			routes = append(routes, header[:len(header)-3])
+		}
+	}
+	for i := range routes {
+		routes[i] = fmt.Sprintf(`"%s"`, routes[i])
+	}
+	content := fmt.Sprintf(`
+	<script>
+	import List from "./List.svelte";
+	const routes = [%s];
+	</script>
+	<List lists={routes} />
+	
+		 `, strings.Join(routes, ", "))
+	os.WriteFile(filePath, []byte(content), 0644)
 }
 
 func coreBuildNavigation() {
@@ -106,7 +136,7 @@ func coreBuildNavigation() {
 			content, _ := os.ReadFile(ext + file)
 			headers := extractHeadings(string(content))
 			for i := range headers {
-				headers[i] = headers[i][2:]
+				headers[i] = strings.TrimSpace(headers[i][2:])
 			}
 
 			filExt := len(file) - 3
@@ -132,7 +162,7 @@ func coreBuildNavigation() {
 			}
 		}
 	}
-
+	coreBuildHome()
 	navListContent := buildNavbar(imports, cases)
 	err := os.WriteFile("../src/components/Navbar/Navlist.svelte", []byte(navListContent), 0644)
 	if err != nil {
@@ -164,6 +194,7 @@ title: %s
 }
 
 func main() {
+
 	args := os.Args[1:]
 
 	if len(args) == 0 {

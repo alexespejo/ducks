@@ -1,4 +1,6 @@
 ---
+import "../styles/layoutSingle.scss"
+import "../styles/tailwind.css"
 interface Props {
   title?: string;
   description?: string;
@@ -16,8 +18,10 @@ const { title = 'Home', description = 'Home' } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <main>
+    <main class="flex items-center justify-center">
+      <div class="w-[60%] px-5 pt-2">
       <slot />
+      </div>
     </main>
   </body>
 </html>

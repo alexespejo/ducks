@@ -2,7 +2,7 @@
  export let label;
 
  function navigate() {
-  window.location.hash = `/${label
+  window.location.hash = `/ducks/${label
    .replace(/[^a-zA-Z0-9 \-]/g, "")
    .split(" ")
    .join("-")
