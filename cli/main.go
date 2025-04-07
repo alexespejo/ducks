@@ -196,15 +196,33 @@ title: %s
 }
 
 func main() {
-	options := []string{"🧱 build", "📃 add", "🧼 clean", "🛜 publish", "Exit"}
+	if len(os.Args) > 2 {
+		fmt.Println("Error: Too many arguments provided")
+		os.Exit(1)
+	}
+
+	args := os.Args[1:]
+	if args[0] != "start" {
+		fmt.Printf("Error: Invalid argument %s. Use 'start'", string(args[0]))
+		os.Exit(1)
+	}
+
+	optionBuild := "\033[1;33m🧱 build\033[0m"     // yellow and bold
+	optionAdd := "\033[1;32m📃 add\033[0m"         // green and bold
+	optionClean := "\033[1;36m🧼 clean\033[0m"     // cyan and bold
+	optionPublish := "\033[1;35m🦆 publish\033[0m" // magenta and bold
+	optionExit := "\033[1;31mExit\033[0m"         // red and bold
+
+	options := []string{optionBuild, optionAdd, optionClean, optionPublish, optionExit}
 	var defaultVal string = options[0]
 	for {
 		var selected string
 
 		// Define the prompt
 		prompt := &survey.Select{
-			Message: "What do you want to do?",
+			Message: "🦆... 🦆.... 🦆....",
 			Options: options,
+			VimMode: true,
 			Default: defaultVal,
 		}
 		err := survey.AskOne(prompt, &selected)
@@ -214,26 +232,26 @@ func main() {
 		}
 		defaultVal = selected
 		switch selected {
-		case options[0]:
+		case optionBuild:
 
 			coreBuildNavigation()
 
-		case options[1]:
+		case optionAdd:
 			fmt.Print("Enter the name of the document to add 📄: ")
 			var docName string
 			fmt.Scanln(&docName)
 			coreBuildDocument(docName)
 			coreBuildNavigation()
 
-		case options[2]:
+		case optionClean:
 			coreBuildNavigation()
 
-		case options[3]:
+		case optionPublish:
 			fmt.Println("Publishing...")
 			exec.Command("git", "add", "--all").Run()
 			exec.Command("git", "qush", "update").Run()
 
-		case options[4]:
+		case optionExit:
 			fmt.Println("Exiting...")
 			os.Exit(0)
 		default:
