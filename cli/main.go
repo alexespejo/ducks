@@ -7,6 +7,8 @@ import (
 	"os/exec"
 	"regexp"
 	"strings"
+
+	"github.com/AlecAivazis/survey/v2"
 )
 
 func coreFileCleanup() {
@@ -37,7 +39,7 @@ func coreFileCleanup() {
 				}
 			}
 		}
-		if !bFound {
+		if !bFound && len(file) > 0 {
 			fmt.Println("Deleting: " + dataExt + file)
 			os.Remove(dataExt + file)
 		}
@@ -194,39 +196,49 @@ title: %s
 }
 
 func main() {
+	options := []string{"🧱 build", "📃 add", "🧼 clean", "🛜 publish", "Exit"}
+	var defaultVal string = options[0]
+	for {
+		var selected string
 
-	args := os.Args[1:]
+		// Define the prompt
+		prompt := &survey.Select{
+			Message: "What do you want to do?",
+			Options: options,
+			Default: defaultVal,
+		}
+		err := survey.AskOne(prompt, &selected)
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			continue
+		}
+		defaultVal = selected
+		switch selected {
+		case options[0]:
 
-	if len(args) == 0 {
-		fmt.Println("Error: No arguments provided. One argument is required.")
-		os.Exit(1)
-	}
+			coreBuildNavigation()
 
-	switch args[0] {
-	case "build":
+		case options[1]:
+			fmt.Print("Enter the name of the document to add 📄: ")
+			var docName string
+			fmt.Scanln(&docName)
+			coreBuildDocument(docName)
+			coreBuildNavigation()
 
-		coreBuildNavigation()
+		case options[2]:
+			coreBuildNavigation()
 
-	case "add":
-		if len(args) < 2 {
-			fmt.Println("Error: No document name provided. One argument is required.")
-			os.Exit(1)
-		} else if strings.Contains(args[1], ".") {
-			fmt.Println("Error: Invalid document name. No '.' allowed.")
+		case options[3]:
+			fmt.Println("Publishing...")
+			exec.Command("git", "add", "--all").Run()
+			exec.Command("git", "qush", "update").Run()
+
+		case options[4]:
+			fmt.Println("Exiting...")
+			os.Exit(0)
+		default:
+			fmt.Println("Error: Invalid argument. Use 'build' or 'add'.")
 			os.Exit(1)
 		}
-		coreBuildDocument(args[1])
-		coreBuildNavigation()
-
-	case "clean":
-		coreFileCleanup()
-
-	case "publish":
-		exec.Command("git", "add", "--all").Run()
-		exec.Command("git", "qush", "update").Run()
-
-	default:
-		fmt.Println("Error: Invalid argument. Use 'build' or 'add'.")
-		os.Exit(1)
 	}
 }
