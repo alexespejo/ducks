@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 # hide CLI foldersrc/run-astro.bash
 run-astro.bash
+
+.vscode
