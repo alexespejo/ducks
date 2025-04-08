@@ -222,9 +222,9 @@ func main() {
 
 	optionBuild := "\033[1;33m🧱 Scaffold\033[0m"          // yellow and bold
 	optionAdd := "\033[1;32m📃 Add Document\033[0m"        // green and bold
-	optionPublish := "\033[1;35m🚀 publish\033[0m"         // magenta and bold
+	optionPublish := "\033[1;35m🚀 Publish\033[0m"         // magenta and bold
 	optionAstroBuild := "\033[1;31m☄️ Astro Build\033[0m" // red and bold
-	optionClean := "\033[1;36m🧼 clean\033[0m"             // cyan and bold
+	optionClean := "\033[1;36m🧼 Clean\033[0m"             // cyan and bold
 	optionExit := "\033[1;31mExit\033[0m"                 // red and bold
 
 	options := []string{optionBuild, optionAdd, optionClean, optionPublish, optionAstroBuild, optionExit}
@@ -234,7 +234,8 @@ func main() {
 
 		// Define the prompt
 		prompt := &survey.Select{
-			Message: "🦆... 🦆.... 🦆....",
+			Message: "🦆... 🦆.... 🦆",
+
 			Options: options,
 			VimMode: true,
 			Default: defaultVal,

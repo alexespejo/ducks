@@ -1,6 +1,8 @@
-go build -o duck main.go 
-sudo mv duck /usr/local/bin
+go build -o duck.exe main.go
+cp duck.exe duck.exe.bak
+sudo mv duck.exe /usr/local/bin
 chmod +x /usr/local/bin/duck 
+mv duck.exe.bak duck.exe
 
 touch ../src/run-astro.bash
 cat > ../src/run-astro.bash << 'EOF'
