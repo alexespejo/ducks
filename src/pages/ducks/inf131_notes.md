@@ -1,4 +1,6 @@
 ---
 layout: "../../layouts/LayoutSingle.astro"
-title: cs179_notes
+title: inf131_notes
 ---
+
+#

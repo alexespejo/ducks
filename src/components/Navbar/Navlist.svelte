@@ -2,7 +2,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { CS165_prjct1 } from "../../data/CS165_prjct1.js";
-import { Cs179_notes } from "../../data/Cs179_notes.js";
+import { Inf131_notes } from "../../data/Inf131_notes.js";
 	
 
 	export let page = "";
@@ -10,7 +10,7 @@ import { Cs179_notes } from "../../data/Cs179_notes.js";
 	let headers: string[] = [];
 	onMount(() => {
 		switch (page.toLowerCase()) {
-			case 'cs165_prjct1': headers=CS165_prjct1; break;case 'cs179_notes': headers=Cs179_notes; break;
+			case 'cs165_prjct1': headers=CS165_prjct1; break;case 'inf131_notes': headers=Inf131_notes; break;
 			default:
 				headers = [];
 				break;
