@@ -220,13 +220,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	optionBuild := "\033[1;33m🧱 build\033[0m"     // yellow and bold
-	optionAdd := "\033[1;32m📃 add\033[0m"         // green and bold
-	optionClean := "\033[1;36m🧼 clean\033[0m"     // cyan and bold
-	optionPublish := "\033[1;35m🦆 publish\033[0m" // magenta and bold
-	optionExit := "\033[1;31mExit\033[0m"         // red and bold
+	optionBuild := "\033[1;33m🧱 Scaffold\033[0m"          // yellow and bold
+	optionAdd := "\033[1;32m📃 Add Document\033[0m"        // green and bold
+	optionPublish := "\033[1;35m🚀 publish\033[0m"         // magenta and bold
+	optionAstroBuild := "\033[1;31m☄️ Astro Build\033[0m" // red and bold
+	optionClean := "\033[1;36m🧼 clean\033[0m"             // cyan and bold
+	optionExit := "\033[1;31mExit\033[0m"                 // red and bold
 
-	options := []string{optionBuild, optionAdd, optionClean, optionPublish, optionExit}
+	options := []string{optionBuild, optionAdd, optionClean, optionPublish, optionAstroBuild, optionExit}
 	var defaultVal string = options[0]
 	for {
 		var selected string
@@ -267,6 +268,16 @@ func main() {
 		case optionExit:
 			fmt.Println("Exiting...")
 			os.Exit(0)
+
+		case optionAstroBuild:
+			exec.Command("../src/run-astro.sh", "build").Run()
+			cmd := exec.Command("bash", "../src/run-astro.bash", "build")
+			_, err := cmd.Output()
+			if err != nil {
+				fmt.Printf("Probably broken build!: %v\n", err)
+			} else {
+				fmt.Println("Build Good ✅")
+			}
 		default:
 			printError("Error: Invalid argument. Use 'build' or 'add'.")
 			os.Exit(1)

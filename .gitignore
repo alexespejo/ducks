@@ -22,4 +22,5 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-# hide CLI folder
+# hide CLI foldersrc/run-astro.bash
+run-astro.bash
