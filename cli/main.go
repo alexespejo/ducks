@@ -231,8 +231,11 @@ func processPrompt(selected string) {
 
 	case optionPublish:
 		fmt.Println("Publishing...")
-		exec.Command("git", "add", "--all").Run()
-		exec.Command("git", "qush", "update").Run()
+		err1 := exec.Command("git", "add", "--all").Run()
+		err2 := exec.Command("git", "qush", "update").Run()
+		if err1 == nil && err2 == nil {
+			fmt.Println("Published! 🚀")
+		}
 
 	case optionExit:
 		fmt.Println("Exiting...")
