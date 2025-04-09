@@ -181,3 +181,10 @@ a {
 a:hover {
  text-decoration: underline; /* Underline on hover */
 }
+p {
+ text-indent: 1em;
+ margin: 1.2em 0;
+ line-height: 1.8; /* Increased line height for better readability */
+ letter-spacing: 0.01em; /* Subtle letter spacing */
+ word-spacing: 0.05em; /* Subtle word spacing */
+}
