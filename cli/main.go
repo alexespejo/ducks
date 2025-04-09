@@ -230,7 +230,7 @@ func processPrompt(selected string) {
 		coreBuildNavigation()
 
 	case optionPublish:
-		fmt.Println("Publishing...")
+		fmt.Println("Getting some ducks in a row 🦆...")
 		err1 := exec.Command("git", "add", "--all").Run()
 		err2 := exec.Command("git", "qush", "update").Run()
 		if err1 == nil && err2 == nil {

@@ -28,5 +28,3 @@ esac
 EOF
 
 grep -q "^run-astro.bash$" ../.gitignore || echo "run-astro.bash" >> ../.gitignore
-
-duck start
