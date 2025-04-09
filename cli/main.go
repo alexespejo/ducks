@@ -220,14 +220,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	optionBuild := "\033[1;33m🧱 Scaffold\033[0m"          // yellow and bold
-	optionAdd := "\033[1;32m📃 Add Document\033[0m"        // green and bold
-	optionPublish := "\033[1;35m🚀 Publish\033[0m"         // magenta and bold
-	optionAstroBuild := "\033[1;31m☄️ Astro Build\033[0m" // red and bold
-	optionClean := "\033[1;36m🧼 Clean\033[0m"             // cyan and bold
-	optionExit := "\033[1;31mExit\033[0m"                 // red and bold
+	optionBuild := "\033[1;33m🧱 Scaffold\033[0m"              // yellow and bold
+	optionAdd := "\033[1;32m📃 Add Document\033[0m"            // green and bold
+	optionPublish := "\033[1;35m🚀 Publish\033[0m"             // magenta and bold
+	optionAstroBuild := "\033[1;38;5;43m🧪 Astro Build\033[0m" // orange color (208)
+	optionClean := "\033[1;36m🧼 Clean\033[0m"                 // cyan and bold
+	optionExit := "\033[31m🚪 Exit\033[0m"                     // red
 
-	options := []string{optionBuild, optionAdd, optionClean, optionPublish, optionAstroBuild, optionExit}
+	options := []string{optionAdd, optionBuild, optionClean, optionPublish, optionAstroBuild, optionExit}
 	var defaultVal string = options[0]
 	for {
 		var selected string

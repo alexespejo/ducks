@@ -1,9 +1,4 @@
-if [ -f "duck.exe" ]; then
-  mv duck.exe duck
-else 
-  go build -o duck main.go
-fi
-
+go build -o duck main.go
 cp duck duck.bak
 sudo mv duck /usr/local/bin
 chmod +x /usr/local/bin/duck 
