@@ -202,6 +202,65 @@ title: %s
 func printError(message string) {
 	fmt.Printf("\033[1;31mError: %s\033[0m\n", message)
 }
+
+var (
+	optionBuild      string = "🏗️  Scaffold"
+	optionAdd        string = "📃 Create Document"
+	optionPublish    string = "🚀 Publish"
+	optionAstroBuild string = "🧪 Test Build"
+	optionAstroDev   string = "💻 Develop"
+	optionClean      string = "🧼 Clean"
+	optionExit       string = "🚪 Exit"
+)
+
+func processPrompt(selected string) {
+	switch selected {
+	case optionBuild:
+
+		coreBuildNavigation()
+
+	case optionAdd:
+		fmt.Print("Enter the name of the document to add 📄: ")
+		var docName string
+		fmt.Scanln(&docName)
+		coreBuildDocument(docName)
+		coreBuildNavigation()
+
+	case optionClean:
+		coreBuildNavigation()
+
+	case optionPublish:
+		fmt.Println("Publishing...")
+		exec.Command("git", "add", "--all").Run()
+		exec.Command("git", "qush", "update").Run()
+
+	case optionExit:
+		fmt.Println("Exiting...")
+		os.Exit(0)
+
+	case optionAstroBuild:
+		exec.Command("../src/run-astro.sh", "build").Run()
+		cmd := exec.Command("bash", "../src/run-astro.bash", "build")
+		_, err := cmd.Output()
+		if err != nil {
+			fmt.Printf("Probably broken build!: %v\n", err)
+		} else {
+			fmt.Println("Build Good ✅")
+		}
+
+	case optionAstroDev:
+		cmd := exec.Command("yarn", "astro", "dev")
+		out, err := cmd.Output()
+		if err != nil {
+			fmt.Printf("Error running command: %v\n", err)
+		} else {
+			fmt.Println(out)
+		}
+	default:
+		printError("Error: Invalid argument. Use 'build' or 'add'. " + selected)
+		os.Exit(1)
+	}
+}
 func main() {
 
 	if len(os.Args) > 2 {
@@ -210,11 +269,6 @@ func main() {
 	}
 
 	args := os.Args[1:]
-	if args[0] != "start" {
-		printError(fmt.Sprintf("Error: Invalid argument %s. Use 'start'", string(args[0])))
-		os.Exit(1)
-	}
-
 	dir, _ := os.Getwd()
 	directories := strings.Split(dir, "/")
 	lastDir := directories[len(directories)-1]
@@ -223,78 +277,44 @@ func main() {
 		os.Exit(1)
 	}
 
-	optionBuild := "🏗️  Scaffold"
-	optionAdd := "📃 Create Document"
-	optionPublish := "🚀 Publish"
-	optionAstroBuild := "🧪 Test Build"
-	optionAstroDev := "💻 Develop"
-	optionClean := "🧼 Clean"
-	optionExit := "🚪 Exit"
-
 	options := []string{optionAdd, optionBuild, optionPublish, optionAstroBuild, optionExit}
 	var defaultVal string = options[0]
-	for {
-		var selected string
+	if args[0] == "start" {
+		optionBuild = "🏗️  Scaffold"
+		optionAdd = "📃 Create Document"
+		optionPublish = "🚀 Publish"
+		optionAstroBuild = "🧪 Test Build"
+		optionAstroDev = "💻 Develop"
+		optionClean = "🧼 Clean"
+		optionExit = "🚪 Exit"
+		for {
+			var selected string
 
-		// Define the prompt
-		prompt := &survey.Select{
-			Message: "🦆",
+			prompt := &survey.Select{
+				Message: "🦆",
 
-			Options: options,
-			VimMode: true,
-			Default: defaultVal,
-		}
-		err := survey.AskOne(prompt, &selected)
-		if err != nil {
-			fmt.Printf("Prompt failed %v\n", err)
-			continue
-		}
-		defaultVal = selected
-		switch selected {
-		case optionBuild:
-
-			coreBuildNavigation()
-
-		case optionAdd:
-			fmt.Print("Enter the name of the document to add 📄: ")
-			var docName string
-			fmt.Scanln(&docName)
-			coreBuildDocument(docName)
-			coreBuildNavigation()
-
-		case optionClean:
-			coreBuildNavigation()
-
-		case optionPublish:
-			fmt.Println("Publishing...")
-			exec.Command("git", "add", "--all").Run()
-			exec.Command("git", "qush", "update").Run()
-
-		case optionExit:
-			fmt.Println("Exiting...")
-			os.Exit(0)
-
-		case optionAstroBuild:
-			exec.Command("../src/run-astro.sh", "build").Run()
-			cmd := exec.Command("bash", "../src/run-astro.bash", "build")
-			_, err := cmd.Output()
-			if err != nil {
-				fmt.Printf("Probably broken build!: %v\n", err)
-			} else {
-				fmt.Println("Build Good ✅")
+				Options: options,
+				VimMode: true,
+				Default: defaultVal,
 			}
-
-		case optionAstroDev:
-			cmd := exec.Command("yarn", "astro", "dev")
-			out, err := cmd.Output()
+			err := survey.AskOne(prompt, &selected)
 			if err != nil {
-				fmt.Printf("Error running command: %v\n", err)
-			} else {
-				fmt.Println(out)
+				fmt.Printf("Prompt failed %v\n", err)
+				continue
 			}
-		default:
-			printError("Error: Invalid argument. Use 'build' or 'add'.")
-			os.Exit(1)
+			defaultVal = selected
+
+			processPrompt(selected)
 		}
+	} else {
+		optionBuild = "build"
+		optionAdd = "add"
+		optionPublish = "publish"
+		optionAstroBuild = "test"
+		optionAstroDev = "develop"
+		optionClean = "clean"
+		optionExit = "exit"
+
+		processPrompt(args[0])
 	}
 }
