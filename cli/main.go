@@ -34,7 +34,7 @@ func coreFileCleanup() {
 	for _, file := range dataData {
 		if strings.Contains(file, ".js") {
 			for i := range headers {
-				if file == headers[i]+".js" {
+				if strings.ToLower(file) == strings.ToLower(headers[i])+".js" {
 					bFound = true
 				}
 			}
@@ -138,13 +138,16 @@ func coreBuildNavigation() {
 			content, _ := os.ReadFile(ext + file)
 			headers := extractHeadings(string(content))
 			for i := range headers {
-				headers[i] = strings.TrimSpace(headers[i][2:])
+				if len(headers[i]) > 2 {
+					headers[i] = strings.TrimSpace(headers[i][2:])
+				}
 			}
 
 			filExt := len(file) - 3
 			fileName := strings.ToUpper(file[:1]) + file[1:filExt]
 			newFile := extData + fileName + ".js"
 			ioFile.CreateFile(newFile)
+			fmt.Println(fileName)
 
 			cases += buildSwitchCase(fileName)
 			imports += buildImports(fileName)
@@ -234,7 +237,7 @@ func main() {
 
 		// Define the prompt
 		prompt := &survey.Select{
-			Message: "🦆... 🦆.... 🦆",
+			Message: "🦆",
 
 			Options: options,
 			VimMode: true,
