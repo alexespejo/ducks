@@ -382,3 +382,30 @@ const LoadSaveScheduleFunctionality = () => {
 
 export default LoadSaveScheduleFunctionality;
 ```
+
+```ts
+    static async upsertGuestUserData(db: DatabaseOrTransaction, userData: User): Promise<string> {
+        return db.transaction(async (tx) => {
+            const userId = await this.createGuestUserOptional(tx, userData.id);
+
+            if (userId === undefined) {
+                throw new Error(`Failed to create guest user for ${userData.id}`);
+            }
+
+            // Add schedules and courses
+            const scheduleIds = await this.upsertSchedulesAndContents(tx, userId, userData.userData.schedules);
+
+            // Update user's current schedule index
+            const scheduleIndex = userData.userData.scheduleIndex;
+
+            const currentScheduleId =
+                scheduleIndex === undefined || scheduleIndex >= scheduleIds.length ? null : scheduleIds[scheduleIndex];
+
+            if (currentScheduleId !== null) {
+                await tx.update(users).set({ currentScheduleId: currentScheduleId }).where(eq(users.id, userId));
+            }
+
+            return userId;
+        });
+    }
+```
