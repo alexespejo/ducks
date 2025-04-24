@@ -5,6 +5,7 @@
 import { CS162_notes1 } from "../../data/CS162_notes1.js";
 import { CS165_prjct1 } from "../../data/CS165_prjct1.js";
 import { Testing } from "../../data/Testing.js";
+import { Cs165_graphs } from "../../data/Cs165_graphs.js";
 import { Inf131_notes } from "../../data/Inf131_notes.js";
 	
 
@@ -13,7 +14,7 @@ import { Inf131_notes } from "../../data/Inf131_notes.js";
 	let headers: string[] = [];
 	onMount(() => {
 		switch (page.toLowerCase()) {
-			case 'aa_old_code': headers=AA_Old_Code; break;case 'cs162_notes1': headers=CS162_notes1; break;case 'cs165_prjct1': headers=CS165_prjct1; break;case 'testing': headers=Testing; break;case 'inf131_notes': headers=Inf131_notes; break;
+			case 'aa_old_code': headers=AA_Old_Code; break;case 'cs162_notes1': headers=CS162_notes1; break;case 'cs165_prjct1': headers=CS165_prjct1; break;case 'testing': headers=Testing; break;case 'cs165_graphs': headers=Cs165_graphs; break;case 'inf131_notes': headers=Inf131_notes; break;
 			default:
 				headers = [];
 				break;
