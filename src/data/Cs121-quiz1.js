@@ -1,2 +1,2 @@
-export const Cs121-quiz1 = [
+export const CS121-Quiz1 = [
 ];
