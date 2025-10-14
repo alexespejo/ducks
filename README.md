@@ -1,4 +1,5 @@
-**Notion** meets **Markdown** meets my VS Code extension meets some Go CLI I built
+# _**Notion** meets **Markdown** meets my VS Code extension meets some Go CLI I built_
+A Astro app and special CLI to quickly take notes that can be made readible in an online READMe format 
 
 ### Start CLI
 
