@@ -62,4 +62,23 @@ title: cs121-quiz1
 - Ranking analysis: considering the user behavior, se analyzes if the ranking heuristics work well 
 - Performance analysis: Huimans expect fast answers so the search engine is monitored to improve performance in the long run 
 
+# Text Transformation and Processing
+- The complete set of documents that are available to be searched 
+- Websearch context: The full set of pages that will be considered by the search engine
+- Text Processing: Occurs prior to building your index - Tokenization: breaking the text into tokens
+ - Linguisitc pre-processing: applying rules to the tokens to improve efficency
+
+# Tokenization
+- Break the input into simple units of meaning
+ - Depends on the choice of how to create tokens
+ - character stream -> token stream
+ - lexer/scanner
+- Compiler frontend 
+- Preprocessor for information retrevial 
+
+# Identifying Tokens
+- Early tokenization methodology
+- Sequence of 3 or more alphanumeric chars
+- A space or special cahr indicates the end of the token
+- All characters converted to lowercase 
 
